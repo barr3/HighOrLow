@@ -154,7 +154,7 @@ namespace HighOrLow
         {
 	    Random rnd = new Random();
             var cardNum = rnd.Next(0, deck.Count);
-	    Console.WriteLine(deck[cardNum].getRank() + symbol[deck[cardNum].getSuit().ToString()]);
+	    Console.Write(deck[cardNum].getRank() + symbol[deck[cardNum].getSuit().ToString()] );
             deck.RemoveAt(cardNum);
 
         }
