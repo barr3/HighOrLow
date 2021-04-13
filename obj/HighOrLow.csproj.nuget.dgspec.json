@@ -1,21 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\nils.blomberg\\Documents\\Skola\\Programmering\\HighOrLow\\HighOrLow.csproj": {}
+    "C:\\Users\\nils.blomberg\\Documents\\Skola\\Programmering\\HighOrLow\\HighOrLow.csproj": {}
   },
   "projects": {
-    "c:\\Users\\nils.blomberg\\Documents\\Skola\\Programmering\\HighOrLow\\HighOrLow.csproj": {
+    "C:\\Users\\nils.blomberg\\Documents\\Skola\\Programmering\\HighOrLow\\HighOrLow.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\nils.blomberg\\Documents\\Skola\\Programmering\\HighOrLow\\HighOrLow.csproj",
+        "projectUniqueName": "C:\\Users\\nils.blomberg\\Documents\\Skola\\Programmering\\HighOrLow\\HighOrLow.csproj",
         "projectName": "HighOrLow",
-        "projectPath": "c:\\Users\\nils.blomberg\\Documents\\Skola\\Programmering\\HighOrLow\\HighOrLow.csproj",
+        "projectPath": "C:\\Users\\nils.blomberg\\Documents\\Skola\\Programmering\\HighOrLow\\HighOrLow.csproj",
         "packagesPath": "C:\\Users\\nils.blomberg\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\nils.blomberg\\Documents\\Skola\\Programmering\\HighOrLow\\obj\\",
+        "outputPath": "C:\\Users\\nils.blomberg\\Documents\\Skola\\Programmering\\HighOrLow\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "c:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
           "C:\\Users\\nils.blomberg\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -59,7 +59,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "c:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     }
