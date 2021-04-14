@@ -6,26 +6,26 @@ namespace HighOrLow
     class Card
     {
 
-        private string rank {get; set; }
-        private string suit {get; set; }
+        private int rank;
+        private string suit;
 
-        public Card(string rank, string suit)
+        public Card(int rank, string suit)
         {
             this.rank = rank;
             this.suit = suit;
         }
 
-        public void setRank(string rank)
+        public void setRank(int rank)
 	{
             this.rank = rank;
         }
 
-        public string getRank()
+        public int getRank()
         {
             return rank;
         }
 
-	public void setSuit(string rank)
+	public void setSuit(string suit)
 	{
             this.suit = suit;
         }

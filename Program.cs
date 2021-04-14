@@ -14,110 +14,80 @@ namespace HighOrLow
         static void Main(string[] args)
         {
 
-
-            Console.OutputEncoding = System.Text.Encoding.Unicode;
-
-
-            // Value test = Value.king;
-            // Console.WriteLine(test);
-
-
-
-            // var suit = RandomEnumValue<Suit>();
-            // var value = RandomEnumValue<Value>();
+            Console.OutputEncoding = System.Text.Encoding.Unicode; 
 
 	    Random rnd = new Random();
 	    
-            string[] suits = new string[4];
-
-            suits[0] = "Clubs";
-            suits[1] = "Diamonds";
-            suits[2] = "Hearts";
-            suits[3] = "Spades";
-
-            var suit = suits[rnd.Next(0, 3)];
-	    
-
-
-
-	    
-
-	    
-
-
-            int temp = rnd.Next(0, 10);
-            // Console.WriteLine(temp);
-
-            // Console.WriteLine((Value)temp-1);
             createDeck();
-            // Console.WriteLine(deck[0].getRank());
-
-            // Console.WriteLine(value);
-
-            // Console.WriteLine (value.ToString () +" of " + suit.ToString());
-
 	    
             symbol.Add("Hearts", "\u2665");
 	    symbol.Add("Clubs", "\u2666");
 	    symbol.Add("Diamonds", "\u2663");
             symbol.Add("Spades", "\u2660");
 
-            // string a = "\u2660";  
-            // Console.WriteLine(a);
 
-            // Console.WriteLine(value. + symbol[suit.ToString()]);
-
-
-
-            // for (int i = 0; i < deck.Count; ++i) {
-            //     Console.WriteLine(deck[i].getRank() + symbol[deck[i].getSuit().ToString()]);
-            // }
-
-            while (true)
+            int count = 0;
+            // int lastCardValue;
+            // bool higher;
+            while (true)  //main program loop
             {
-                getCard();
-                Console.ReadLine();
+		if (count == 13) {
+                    break;
+                }
+
+		int lastCardValue;
+                var thisCardValue  = getCard();
+                Console.WriteLine("Will next card be higher or lower?");
+                string guess = Console.ReadLine().ToLower();
+
+
+                if (guess == "h")
+                {
+                    Console.WriteLine("Higher");
+                }
+                else if (guess == "l")
+                {
+                    Console.WriteLine("Lower");
+                }
+                else
+                {
+                    Console.WriteLine("burh");
+                }
+
+
+
+                lastCardValue = thisCardValue;
+
+
             }
 
-
-            // Card test = new Card("test", "korv");
-
-            // Console.WriteLine(test.getRank());
-
         }
 
-	// static Random _R = new Random ();
-	// static T RandomEnumValue<T> ()
+        // enum Value
+        // {
+	//     Ace,
+	//     Two,
+	//     Three,
+	//     Four,
+	//     Five,
+	//     Six,
+	//     Seven,
+	//     Eight,
+	//     Nine,
+	//     Ten,
+        //     Jack,
+        //     Queen,
+        //     King
+        // }
+
+
+        // enum Suit
 	// {
-	//     var v = Enum.GetValues (typeof (T));
-	//     return (T) v.GetValue (_R.Next(v.Length));
-	// }
-
-        enum Value
-        {
-	    Ace,
-	    Two,
-	    Three,
-	    Four,
-	    Five,
-	    Six,
-	    Seven,
-	    Eight,
-	    Nine,
-	    Ten,
-            Jack,
-            Queen,
-            King
-        }
-
-
-        enum Suit
-	{
-	    Hearts,
-	    Clubs,
-	    Diamonds,
-	    Spades
-        }
+	//     Hearts,
+	//     Clubs,
+	//     Diamonds,
+	//     Spades
+        // }
 
         static void writeScore()
 	{
@@ -130,35 +100,52 @@ namespace HighOrLow
 
         static void createDeck()
         {
-
+	    //Lägg alla i samma loop sen
 	    for (int i = 0; i < 13; ++i) {
-                deck.Add(new Card(i.ToString(), "Diamonds"));
-            }
-
-	    for (int i = 0; i < 13; ++i) {
-                deck.Add(new Card(i.ToString(), "Clubs"));
-            }	    
-
-	    for (int i = 0; i < 13; ++i) {
-                deck.Add(new Card(i.ToString(), "Spades" ));
-            }	    
-
-	    for (int i = 0; i < 13; ++i) {
-                deck.Add(new Card(i.ToString(), "Hearts"));
+                deck.Add(new Card(i, "Diamonds"));
+		deck.Add(new Card(i, "Clubs"));
+                deck.Add(new Card(i, "Spades" ));
+                deck.Add(new Card(i, "Hearts"));
             }
 
 	    
         }
 
-        static void getCard()
+        static int getCard()
         {
 	    Random rnd = new Random();
             var cardNum = rnd.Next(0, deck.Count);
-	    Console.Write(deck[cardNum].getRank() + symbol[deck[cardNum].getSuit().ToString()] );
+            var rankInt = deck[cardNum].getRank();
+            var suit = symbol[deck[cardNum].getSuit().ToString()];
+	    
+            string rank = convertRankToFacevalue(rankInt);
+	    
+            Console.WriteLine(rank + suit);
             deck.RemoveAt(cardNum);
+
+            return cardNum;
 
         }
 
+        static string convertRankToFacevalue(int rank)
+        {
 
+            switch (rank)
+	    {
+		case 0:
+                    return "A";
+		case 10:
+                    return "J";
+		case 11:
+                    return "Q";
+		case 12:
+                    return "K";
+                default:
+                    rank++;
+                    return rank.ToString();
+            }
+
+        }
+	
     }
 }
