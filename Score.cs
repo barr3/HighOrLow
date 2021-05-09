@@ -8,7 +8,7 @@ namespace HighOrLow
     {
         public string player;
         public int score;
-
+	public static bool listIsEmpty = false;
         public static List<Score> highScores = new List<Score>();
 	
 	
@@ -18,6 +18,7 @@ namespace HighOrLow
             this.score = score;
             highScores.Add(this);
             writeScore(this);
+            listIsEmpty = false;
         }
 
         public Score() { }
@@ -33,10 +34,10 @@ namespace HighOrLow
             file.Close();
 
         }
-
 	
-        public static void readScore()
+        public static void readScore()	    
         {
+            Console.WriteLine("krov med mos till lunch");
             System.Xml.Serialization.XmlSerializer reader =
 		new System.Xml.Serialization.XmlSerializer(typeof(List<Score>));
             System.IO.StreamReader file = new System.IO.StreamReader("./score.xml");
@@ -58,13 +59,15 @@ namespace HighOrLow
 
         public static void showHighScores()	    
         {
-            sortHighScores();
+
+	    sortHighScores();
             Console.Clear();
             Console.WriteLine("High scores");
             for (int i = 0; i < highScores.Count; ++i) {
-                Console.WriteLine((i+1) + ": " + highScores[i].player + "\t|\t" + highScores[i].score);
+                Console.WriteLine((i+1) + ": " + highScores[i].player + "\t\t" + highScores[i].score);
             }
-	}
+
+        }
 
         public string getPlayer()
         {

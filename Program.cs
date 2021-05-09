@@ -23,8 +23,15 @@ namespace HighOrLow
 	    //Prepares the console
 	    Console.OutputEncoding = System.Text.Encoding.Unicode;
             Console.Clear();	    
-            Score.readScore(); //Reads the scores from the score.xml file
+	    try
+	    {
 
+                Score.readScore(); //Reads the scores from the score.xml file
+	    }
+            catch
+	    {
+		Score.listIsEmpty = true;
+	    }
             while (true)
             {
                 Console.Clear();
@@ -46,8 +53,22 @@ namespace HighOrLow
                                 play();
                                 break;
                             case 2:
-                                Score.showHighScores();
+                                if (Score.listIsEmpty == true)
+				{
+                                    Console.Clear();
+                                    Console.WriteLine("Unfortunately, you do not have any high score entries, yet.");
+				    Console.WriteLine("Press enter to go back to main menu...");
+				    Console.ReadLine();
+                                }
+				else
+				{
+				    Score.showHighScores();
+                                    Console.WriteLine("Press enter to go back to main menu...");
+                                    Console.ReadLine();
+                                }
+
                                 break;
+                                Console.ReadLine();
                             case 3:
 				System.Environment.Exit(0);  
                                 break;
@@ -59,6 +80,7 @@ namespace HighOrLow
                     }
                     catch
                     {
+			Console.Clear();
                         Console.WriteLine("Please choose a menu option.");
                     }
 

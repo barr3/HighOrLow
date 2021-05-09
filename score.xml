@@ -1,39 +1,28 @@
 <?xml version="1.0"?>
 <ArrayOfScore xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Score>
-    <player>David William Runevall</player>
-    <score>24</score>
-  </Score>
-  <Score>
-    <player>Erik</player>
-    <score>29</score>
-  </Score>
-  <Score>
-    <player>Alexander Vein</player>
-    <score>34</score>
-  </Score>
-  <Score>
-    <player>Carl Engman</player>
-    <score>16</score>
-  </Score>
-  <Score>
-    <player>Kasper Andreasson</player>
-    <score>17</score>
-  </Score>
-  <Score>
     <player>Barre</player>
-    <score>6</score>
-  </Score>
-  <Score>
-    <player>hlhlhlhlhlhl</player>
-    <score>0</score>
+    <score>28</score>
   </Score>
   <Score>
     <player>Moise</player>
-    <score>0</score>
+    <score>1000000000</score>
   </Score>
   <Score>
-    <player>Michael</player>
-    <score>4</score>
+    <player>Please</player>
+    <score>6969</score>
   </Score>
+  <Score>
+    <player>help</player>
+    <score>420</score>
+  </Score>
+  <Score>
+    <player>me</player>
+    <score>100</score>
+  </Score>
+  <Score>
+    <player>moisemosiemosiemosemosiemiosmoseomoisemoisemoisemoisemiose</player>
+    <score>99</score>
+  </Score>
+  
 </ArrayOfScore>
