@@ -20,49 +20,94 @@ namespace HighOrLow
 	    
             createDeck();
 	    
-            symbol.Add("Hearts", "\u2665");
-	    symbol.Add("Clubs", "\u2666");
-	    symbol.Add("Diamonds", "\u2663");
-            symbol.Add("Spades", "\u2660");
+	    
+            symbol.Add("Hearts", "Hearts"); //"\u2665"n
+	    symbol.Add("Clubs", "Clubs"); //"\u2666"
+	    symbol.Add("Diamonds", "Diamonds"); //"\u2663"
+            symbol.Add("Spades", "Spades"); //"\u2660"
 
-
-            int count = 0;
-            // int lastCardValue;
-            // bool higher;
-            while (true)  //main program loop
+            int points = 0;
+            int thisCardValue = 0;
+            int lastCardValue = 0; 
+            bool higher = true;
+	    for (int count = 0; count < 13; count++) 
             {
-		if (count == 13) {
-                    break;
+
+
+                thisCardValue = getCard();
+		
+		if (count > 0)
+		{
+                    points = evaluateCards(thisCardValue, lastCardValue, points, higher);
                 }
+		
+                Console.WriteLine("Will next card be higher or lower? (h/l) \n");
 
-		int lastCardValue;
-                var thisCardValue  = getCard();
-                Console.WriteLine("Will next card be higher or lower?");
-                string guess = Console.ReadLine().ToLower();
-
-
-                if (guess == "h")
-                {
-                    Console.WriteLine("Higher");
-                }
-                else if (guess == "l")
-                {
-                    Console.WriteLine("Lower");
-                }
-                else
-                {
-                    Console.WriteLine("burh");
-                }
+		if (count > 0)
+		{
+		    Console.WriteLine("Points: " + points);
+		}
 
 
+                higher = getInput();
 
                 lastCardValue = thisCardValue;
-
 
             }
 
         }
 
+	static bool getInput()
+	{
+            while (true)
+            {
+		ConsoleKey guess = Console.ReadKey(true).Key;
+		if (guess == ConsoleKey.L)
+                {
+                    return false;
+                }
+                else if (guess == ConsoleKey.H)
+                {
+                    return true;
+                }
+		else {
+                    Console.WriteLine("Please press h or l");		    
+                }
+
+            }
+
+        }
+
+
+        static int evaluateCards(int thisCardValue, int lastCardValue, int points, bool higher)
+        {
+	    if (higher == true)
+	    {
+		if (thisCardValue > lastCardValue)
+		{
+                    Console.WriteLine("Points in method: " + points++);
+                    return points++;   
+		}
+	    }
+
+	    if (higher == false)
+	    {
+		if (thisCardValue < lastCardValue)
+		{
+                    Console.WriteLine("Points in method: " + points++);		    
+		    return points++;   
+		}
+		    
+	    }
+	    Console.WriteLine("Points in method: " + points);		    	    
+	    return points;
+
+	}
+	
+	
+
+
+	
         // enum Value
         // {
 	//     Ace,
@@ -120,10 +165,11 @@ namespace HighOrLow
 	    
             string rank = convertRankToFacevalue(rankInt);
 	    
-            Console.WriteLine(rank + suit);
+            Console.WriteLine(rank + " of " + suit);
             deck.RemoveAt(cardNum);
 
-            return cardNum;
+            // return cardNum;
+	    return rankInt;
 
         }
 
@@ -149,3 +195,4 @@ namespace HighOrLow
 	
     }
 }
+

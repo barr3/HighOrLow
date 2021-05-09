@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "ZFQWm8QlFwTMHg6EZlesA9T+BnqPcieH4m3ivCO8+f4GEFNYZ70ta5BgeJZOt2Y1bNG6/5isezjjbIfhm8Mqog==",
+  "dgSpecHash": "3VwQAA7qIJ9IDflUtbbUwaQ7ePbvkVMPVDX8LlZqcY++0q0qtAzDCaz8AY5GTC379MjKfZYDTJ1FIHVv8z9q6A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\nils.blomberg\\Documents\\Skola\\Programmering\\HighOrLow\\HighOrLow.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/home/barre/Development/C#/HighOrLow/HighOrLow.csproj",
+  "expectedPackageFiles": [
+    "/home/barre/.nuget/packages/microsoft.aspnetcore.app.ref/5.0.0/microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512"
+  ],
   "logs": []
 }
