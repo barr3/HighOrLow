@@ -2,6 +2,11 @@
 using System.IO;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Xml;
+using System.Xml.Serialization;
+
 
 namespace HighOrLow
 {
@@ -10,54 +15,138 @@ namespace HighOrLow
 	static List<Card> deck = new List<Card>();
 	static Dictionary<string, string> symbol = new Dictionary<string, string>();
 	static Dictionary<string, string> letter = new Dictionary<string, string>();
-	
+
+
         static void Main(string[] args)
         {
 
-            Console.OutputEncoding = System.Text.Encoding.Unicode; 
+	    //Prepares the console
+	    Console.OutputEncoding = System.Text.Encoding.Unicode;
+            Console.Clear();	    
+            Score.readScore(); //Reads the scores from the score.xml file
 
-	    Random rnd = new Random();
-	    
-            createDeck();
-	    
-	    
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Choose menu option");
+
+                while (true)
+                {
+                    try
+                    {
+                        Console.WriteLine("1. Play game");
+                        Console.WriteLine("2. Show high scores.");
+                        Console.WriteLine("3. Exit game.");
+
+                        int menuOption = int.Parse(Console.ReadLine());
+
+                        switch (menuOption)
+                        {
+                            case 1:
+                                play();
+                                break;
+                            case 2:
+                                Score.showHighScores();
+                                break;
+                            case 3:
+				System.Environment.Exit(0);  
+                                break;
+                            default:
+                                play();
+                                break;
+                        }
+                        break;
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Please choose a menu option.");
+                    }
+
+                }
+
+            }
+        }
+
+        static void play()
+        {
+            createDeck(); 
+
             symbol.Add("Hearts", "Hearts"); //"\u2665"n
-	    symbol.Add("Clubs", "Clubs"); //"\u2666"
-	    symbol.Add("Diamonds", "Diamonds"); //"\u2663"
+            symbol.Add("Clubs", "Clubs"); //"\u2666"
+            symbol.Add("Diamonds", "Diamonds"); //"\u2663"
             symbol.Add("Spades", "Spades"); //"\u2660"
 
+            int totalPoints = 0;
+            for (int i = 0; i < 4; ++i)
+            {
+                int roundPoints = playRound();
+                if (roundPoints < 0) {
+                    break;
+                }
+                totalPoints += roundPoints;
+                Console.Clear();		
+            }
+
+	    Console.WriteLine("Total points: " + totalPoints + "\n");		    
+
+            Console.Write("Please enter player name: ");
+            string playerName = Console.ReadLine();
+
+            Score score = new Score(playerName, totalPoints);
+
+	}
+
+
+        static int playRound()
+        {
             int points = 0;
             int thisCardValue = 0;
-            int lastCardValue = 0; 
+            int lastCardValue = 0;
             bool higher = true;
-	    for (int count = 0; count < 13; count++) 
+            for (int count = 0; count < 13; count++)
             {
 
-
                 thisCardValue = getCard();
-		
-		if (count > 0)
-		{
-                    points = evaluateCards(thisCardValue, lastCardValue, points, higher);
+
+                if (count > 0)
+                {
+		    points = evaluateCards(thisCardValue, lastCardValue, points, higher);
+		    if (points < 0)
+		    {
+                        Console.WriteLine("You got at pair. You lose.");
+                        Console.WriteLine("Press enter to continue...");
+			Console.ReadLine();
+			return -100;
+                    }
                 }
-		
+
                 Console.WriteLine("Will next card be higher or lower? (h/l) \n");
 
-		if (count > 0)
-		{
-		    Console.WriteLine("Points: " + points);
-		}
+                if (count > 0)
+                {
+                    Console.WriteLine("Points: " + points + "\n");
+                }
 
-
+		
                 higher = getInput();
 
                 lastCardValue = thisCardValue;
 
             }
+            Console.WriteLine("Total points this round: " + points + "\n");
+            Console.WriteLine("Press enter to continue...");
+            Console.ReadLine();
+
+	    if (points == 13)
+	    {
+                points += 50;
+            }	  
+            return points;
 
         }
 
-	static bool getInput()
+
+        static bool getInput()
 	{
             while (true)
             {
@@ -81,25 +170,32 @@ namespace HighOrLow
 
         static int evaluateCards(int thisCardValue, int lastCardValue, int points, bool higher)
         {
-	    if (higher == true)
+	    if (thisCardValue == 0)
+	    {
+                points++;
+            }
+	    else if (thisCardValue == lastCardValue)
+	    {
+		return -100;
+	    }
+	    
+	    else if (higher == true)
 	    {
 		if (thisCardValue > lastCardValue)
 		{
-                    Console.WriteLine("Points in method: " + points++);
-                    return points++;   
+                    points++;
 		}
 	    }
-
-	    if (higher == false)
+	    else if (higher == false)
 	    {
 		if (thisCardValue < lastCardValue)
 		{
-                    Console.WriteLine("Points in method: " + points++);		    
-		    return points++;   
-		}
+                    points++;
+                }
 		    
 	    }
-	    Console.WriteLine("Points in method: " + points);		    	    
+
+	    
 	    return points;
 
 	}
@@ -129,30 +225,22 @@ namespace HighOrLow
         // enum Suit
 	// {
 	//     Hearts,
-	//     Clubs,
+	//     Clubs,p
 	//     Diamonds,
 	//     Spades
         // }
 
-        static void writeScore()
-	{
-
-	    string jsonString = "Hej";
-
-	    File.WriteAllText("./test.txt", jsonString);
-	    
-	}
 
         static void createDeck()
         {
-	    //Lägg alla i samma loop sen
-	    for (int i = 0; i < 13; ++i) {
+            deck.Clear();
+            //Lägg alla i samma loop sen
+            for (int i = 0; i < 13; ++i) {
                 deck.Add(new Card(i, "Diamonds"));
 		deck.Add(new Card(i, "Clubs"));
                 deck.Add(new Card(i, "Spades" ));
                 deck.Add(new Card(i, "Hearts"));
             }
-
 	    
         }
 
