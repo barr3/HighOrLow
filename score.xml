@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<ArrayOfScore xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Score>
+    <player>David William Runevall</player>
+    <score>24</score>
+  </Score>
+  <Score>
+    <player>Erik</player>
+    <score>29</score>
+  </Score>
+  <Score>
+    <player>Alexander Vein</player>
+    <score>34</score>
+  </Score>
+  <Score>
+    <player>Carl Engman</player>
+    <score>16</score>
+  </Score>
+  <Score>
+    <player>Kasper Andreasson</player>
+    <score>17</score>
+  </Score>
+  <Score>
+    <player>Barre</player>
+    <score>6</score>
+  </Score>
+  <Score>
+    <player>hlhlhlhlhlhl</player>
+    <score>0</score>
+  </Score>
+  <Score>
+    <player>Moise</player>
+    <score>0</score>
+  </Score>
+  <Score>
+    <player>Michael</player>
+    <score>4</score>
+  </Score>
+</ArrayOfScore>
