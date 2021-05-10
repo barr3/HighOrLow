@@ -11,32 +11,38 @@ using System.Xml.Serialization;
 namespace HighOrLow
 {
     class Program
+
     {
-	static List<Card> deck = new List<Card>();
-	static Dictionary<string, string> symbol = new Dictionary<string, string>();
-	static Dictionary<string, string> letter = new Dictionary<string, string>();
+        static List<Card> deck = new List<Card>();
+        static Dictionary<string, string> symbol = new Dictionary<string, string>();
+        static Dictionary<string, string> letter = new Dictionary<string, string>();
 
 
         static void Main(string[] args)
         {
 
-	    //Prepares the console
-	    Console.OutputEncoding = System.Text.Encoding.Unicode;
-            Console.Clear();	    
-	    try
-	    {
+            //Prepares the console
+            Console.OutputEncoding = System.Text.Encoding.Unicode;
+            Console.Clear();
+	    symbol.Add("Hearts", "Hearts"); //"\u2665"n
+            symbol.Add("Clubs", "Clubs"); //"\u2666"
+            symbol.Add("Diamonds", "Diamonds"); //"\u2663"
+            symbol.Add("Spades", "Spades"); //"\u2660"
+
+            try
+            {
 
                 Score.readScore(); //Reads the scores from the score.xml file
-	    }
+            }
             catch
-	    {
-		Score.listIsEmpty = true;
-	    }
+            {
+                Score.listIsEmpty = true;
+            }
             while (true)
             {
                 Console.Clear();
                 Console.WriteLine("Choose menu option");
-
+		
                 while (true)
                 {
                     try
@@ -44,7 +50,7 @@ namespace HighOrLow
                         Console.WriteLine("1. Play game");
                         Console.WriteLine("2. Show high scores.");
                         Console.WriteLine("3. Exit game.");
-
+			
                         int menuOption = int.Parse(Console.ReadLine());
 
                         switch (menuOption)
@@ -54,23 +60,23 @@ namespace HighOrLow
                                 break;
                             case 2:
                                 if (Score.listIsEmpty == true)
-				{
+                                {
                                     Console.Clear();
                                     Console.WriteLine("Unfortunately, you do not have any high score entries, yet.");
-				    Console.WriteLine("Press enter to go back to main menu...");
-				    Console.ReadLine();
+                                    Console.WriteLine("Press enter to go back to main menu...");
+                                    Console.ReadLine();
                                 }
-				else
-				{
-				    Score.showHighScores();
+                                else
+                                {
+                                    Score.showHighScores();
                                     Console.WriteLine("Press enter to go back to main menu...");
                                     Console.ReadLine();
                                 }
 
                                 break;
-                                Console.ReadLine();
+
                             case 3:
-				System.Environment.Exit(0);  
+                                System.Environment.Exit(0);
                                 break;
                             default:
                                 play();
@@ -80,7 +86,7 @@ namespace HighOrLow
                     }
                     catch
                     {
-			Console.Clear();
+                        Console.Clear();
                         Console.WriteLine("Please choose a menu option.");
                     }
 
@@ -91,39 +97,37 @@ namespace HighOrLow
 
         static void play()
         {
-            createDeck(); 
+            createDeck();
+	    
 
-            symbol.Add("Hearts", "Hearts"); //"\u2665"n
-            symbol.Add("Clubs", "Clubs"); //"\u2666"
-            symbol.Add("Diamonds", "Diamonds"); //"\u2663"
-            symbol.Add("Spades", "Spades"); //"\u2660"
 
             int totalPoints = 0;
             for (int i = 0; i < 4; ++i)
             {
                 int roundPoints = playRound();
-                if (roundPoints < 0) {
+                if (roundPoints < 0)
+                {
                     break;
                 }
                 totalPoints += roundPoints;
-                Console.Clear();		
+                Console.Clear();
             }
 
-	    Console.WriteLine("Total points: " + totalPoints + "\n");		    
+            Console.WriteLine("Total points: " + totalPoints + "\n");
 
             Console.Write("Please enter player name: ");
             string playerName = Console.ReadLine();
 
             Score score = new Score(playerName, totalPoints);
 
-	}
+        }
 
 
         static int playRound()
         {
             int points = 0;
-            int thisCardValue = 0;
-            int lastCardValue = 0;
+	    Card.Value thisCardValue = 0;
+            Card.Value lastCardValue = 0;
             bool higher = true;
             for (int count = 0; count < 13; count++)
             {
@@ -132,13 +136,13 @@ namespace HighOrLow
 
                 if (count > 0)
                 {
-		    points = evaluateCards(thisCardValue, lastCardValue, points, higher);
-		    if (points < 0)
-		    {
+                    points = evaluateCards(thisCardValue, lastCardValue, points, higher);
+                    if (points < 0)
+                    {
                         Console.WriteLine("You got at pair. You lose.");
                         Console.WriteLine("Press enter to continue...");
-			Console.ReadLine();
-			return -100;
+                        Console.ReadLine();
+                        return -100;
                     }
                 }
 
@@ -149,7 +153,7 @@ namespace HighOrLow
                     Console.WriteLine("Points: " + points + "\n");
                 }
 
-		
+
                 higher = getInput();
 
                 lastCardValue = thisCardValue;
@@ -159,21 +163,21 @@ namespace HighOrLow
             Console.WriteLine("Press enter to continue...");
             Console.ReadLine();
 
-	    if (points == 13)
-	    {
+            if (points == 13)
+            {
                 points += 50;
-            }	  
+            }
             return points;
 
         }
 
 
         static bool getInput()
-	{
+        {
             while (true)
             {
-		ConsoleKey guess = Console.ReadKey(true).Key;
-		if (guess == ConsoleKey.L)
+                ConsoleKey guess = Console.ReadKey(true).Key;
+                if (guess == ConsoleKey.L)
                 {
                     return false;
                 }
@@ -181,8 +185,9 @@ namespace HighOrLow
                 {
                     return true;
                 }
-		else {
-                    Console.WriteLine("Please press h or l");		    
+                else
+                {
+                    Console.WriteLine("Please press h or l");
                 }
 
             }
@@ -190,54 +195,54 @@ namespace HighOrLow
         }
 
 
-        static int evaluateCards(int thisCardValue, int lastCardValue, int points, bool higher)
+        static int evaluateCards(Card.Value thisCardValue, Card.Value lastCardValue, int points, bool higher)
         {
-	    if (thisCardValue == 0)
-	    {
+            if (thisCardValue == 0)
+            {
                 points++;
             }
-	    else if (thisCardValue == lastCardValue)
-	    {
-		return -100;
-	    }
-	    
-	    else if (higher == true)
-	    {
-		if (thisCardValue > lastCardValue)
-		{
-                    points++;
-		}
-	    }
-	    else if (higher == false)
-	    {
-		if (thisCardValue < lastCardValue)
-		{
+            else if (thisCardValue == lastCardValue)
+            {
+                return -100;
+            }
+
+            else if (higher == true)
+            {
+                if (thisCardValue > lastCardValue)
+                {
                     points++;
                 }
-		    
-	    }
+            }
+            else if (higher == false)
+            {
+                if (thisCardValue < lastCardValue)
+                {
+                    points++;
+                }
 
-	    
-	    return points;
-
-	}
-	
-	
+            }
 
 
-	
+            return points;
+
+        }
+
+
+
+
+
         // enum Value
         // {
-	//     Ace,
-	//     Two,
-	//     Three,
-	//     Four,
-	//     Five,
-	//     Six,
-	//     Seven,
-	//     Eight,
-	//     Nine,
-	//     Ten,
+        //     Ace,
+        //     Two,
+        //     Three,
+        //     Four,
+        //     Five,
+        //     Six,
+        //     Seven,
+        //     Eight,
+        //     Nine,
+        //     Ten,
         //     Jack,
         //     Queen,
         //     King
@@ -245,11 +250,11 @@ namespace HighOrLow
 
 
         // enum Suit
-	// {
-	//     Hearts,
-	//     Clubs,p
-	//     Diamonds,
-	//     Spades
+        // {
+        //     Hearts,
+        //     Clubs,
+        //     Diamonds,
+        //     Spades
         // }
 
 
@@ -257,52 +262,51 @@ namespace HighOrLow
         {
             deck.Clear();
             //Lägg alla i samma loop sen
-            for (int i = 0; i < 13; ++i) {
-                deck.Add(new Card(i, "Diamonds"));
-		deck.Add(new Card(i, "Clubs"));
-                deck.Add(new Card(i, "Spades" ));
-                deck.Add(new Card(i, "Hearts"));
+            for (int i = 0; i < 13; ++i)
+            {
+                deck.Add(new Card((Card.Value)i, Card.Suit.Diamonds));
+                deck.Add(new Card((Card.Value)i, Card.Suit.Spades));
+                deck.Add(new Card((Card.Value)i, Card.Suit.Clubs));
+                deck.Add(new Card((Card.Value)i, Card.Suit.Hearts));
             }
-	    
+
         }
 
-        static int getCard()
+        static Card.Value getCard()
         {
-	    Random rnd = new Random();
+            Random rnd = new Random();
             var cardNum = rnd.Next(0, deck.Count);
-            var rankInt = deck[cardNum].getRank();
+            var rank = deck[cardNum].getRank();
             var suit = symbol[deck[cardNum].getSuit().ToString()];
-	    
-            string rank = convertRankToFacevalue(rankInt);
-	    
+
+            string stringRank = convertRankToFaceValue(rank);
+
             Console.WriteLine(rank + " of " + suit);
             deck.RemoveAt(cardNum);
 
             // return cardNum;
-	    return rankInt;
+            return rank;
 
         }
 
-        static string convertRankToFacevalue(int rank)
+        static string convertRankToFaceValue(Card.Value rank)
         {
 
             switch (rank)
-	    {
-		case 0:
+            {
+                case Card.Value.Ace:
                     return "A";
-		case 10:
+                case Card.Value.Jack:
                     return "J";
-		case 11:
+                case Card.Value.Queen:
                     return "Q";
-		case 12:
+                case Card.Value.King:
                     return "K";
                 default:
-                    rank++;
-                    return rank.ToString();
+                    return rank++.ToString();
+
             }
 
         }
-	
     }
 }
-

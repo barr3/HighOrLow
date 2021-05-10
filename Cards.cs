@@ -6,34 +6,61 @@ namespace HighOrLow
     class Card
     {
 
-        private int rank;
-        private string suit;
+        private Value rank;
+        private Suit suit;
 
-        public Card(int rank, string suit)
+        public Card(Value rank, Suit suit)
         {
             this.rank = rank;
             this.suit = suit;
         }
 
-        public void setRank(int rank)
-	{
-            this.rank = rank;
-        }
+        // public void setRank(Value rank)
+	// {
+        //     this.rank = rank;
+        // }
 
-        public int getRank()
+        public Value getRank()
         {
             return rank;
         }
 
-	public void setSuit(string suit)
-	{
-            this.suit = suit;
-        }
+	// public void setSuit(string suit)
+	// {
+        //     this.suit = suit;
+        // }
 
-        public string getSuit()
+        public Suit getSuit()
         {
             return suit;
         }
+
+	public enum Value
+        {
+	    Ace,
+	    Two,
+	    Three,
+	    Four,
+	    Five,
+	    Six,
+	    Seven,
+	    Eight,
+	    Nine,
+	    Ten,
+            Jack,
+            Queen,
+            King
+        }
+
+
+        public enum Suit
+	{
+	    Hearts,
+	    Clubs,
+	    Diamonds,
+	    Spades
+        }
+
 	
     }
 

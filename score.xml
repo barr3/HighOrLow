@@ -1,10 +1,6 @@
 <?xml version="1.0"?>
 <ArrayOfScore xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Score>
-    <player>Barre</player>
-    <score>28</score>
-  </Score>
-  <Score>
     <player>Moise</player>
     <score>1000000000</score>
   </Score>
@@ -24,5 +20,60 @@
     <player>moisemosiemosiemosemosiemiosmoseomoisemoisemoisemoisemiose</player>
     <score>99</score>
   </Score>
-  
+  <Score>
+    <player>Barre</player>
+    <score>28</score>
+  </Score>
+  <Score>
+    <player />
+    <score>0</score>
+  </Score>
+  <Score>
+    <player>Sampa</player>
+    <score>0</score>
+  </Score>
+  <Score>
+    <player>Hej</player>
+    <score>6</score>
+  </Score>
+  <Score>
+    <player>Adam</player>
+    <score>12</score>
+  </Score>
+  <Score>
+    <player>hlh</player>
+    <score>0</score>
+  </Score>
+  <Score>
+    <player />
+    <score>0</score>
+  </Score>
+  <Score>
+    <player>Alex</player>
+    <score>9</score>
+  </Score>
+  <Score>
+    <player>Carld</player>
+    <score>0</score>
+  </Score>
+  <Score>
+    <player>Korv</player>
+    <score>0</score>
+  </Score>
+  <Score>
+    <player>Korvmoj</player>
+    <score>0</score>
+  </Score>
+  <Score>
+    <player>Babis</player>
+    <score>20</score>
+  </Score>
+  <Score>
+    <player>Erik</player>
+    <score>0</score>
+  </Score>
+  <Score>
+    <player>SJK</player>
+    <score>0</score>
+  </Score>
 </ArrayOfScore>

@@ -8,24 +8,33 @@
     "net5.0": []
   },
   "packageFolders": {
-    "/home/barre/.nuget/packages/": {}
+    "C:\\Users\\nils.blomberg\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/barre/Development/C#/HighOrLow/HighOrLow.csproj",
+      "projectUniqueName": "C:\\Users\\nils.blomberg\\Documents\\Skola\\Programmering\\HighOrLow\\HighOrLow.csproj",
       "projectName": "HighOrLow",
-      "projectPath": "/home/barre/Development/C#/HighOrLow/HighOrLow.csproj",
-      "packagesPath": "/home/barre/.nuget/packages/",
-      "outputPath": "/home/barre/Development/C#/HighOrLow/obj/",
+      "projectPath": "C:\\Users\\nils.blomberg\\Documents\\Skola\\Programmering\\HighOrLow\\HighOrLow.csproj",
+      "packagesPath": "C:\\Users\\nils.blomberg\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\nils.blomberg\\Documents\\Skola\\Programmering\\HighOrLow\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Microsoft\\Xamarin\\NuGet\\",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "/home/barre/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\nils.blomberg\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -53,18 +62,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[5.0.0, 5.0.0]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.202/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
       }
     }
   }
