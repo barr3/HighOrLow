@@ -14,9 +14,6 @@ namespace HighOrLow
 
     {
         static List<Card> deck = new List<Card>();
-        static Dictionary<string, string> symbol = new Dictionary<string, string>();
-        static Dictionary<string, string> letter = new Dictionary<string, string>();
-
 
         static void Main(string[] args)
         {
@@ -31,7 +28,6 @@ namespace HighOrLow
 
             try
             {
-
                 Score.readScore(); //Reads the scores from the score.xml file
             }
             catch
@@ -277,7 +273,7 @@ namespace HighOrLow
             Random rnd = new Random();
             var cardNum = rnd.Next(0, deck.Count);
             var rank = deck[cardNum].getRank();
-            var suit = symbol[deck[cardNum].getSuit().ToString()];
+            var suit = deck[cardNum].getSuit();
 
             string stringRank = convertRankToFaceValue(rank);
 
